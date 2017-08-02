@@ -1,0 +1,10 @@
+ruby -e "puts 123"
+
+print 123
+"Hello".reverse
+irb --simple-prompt
+ri upcase
+ri String#upcase
+ri Object#inspect
+"123".class
+200.next

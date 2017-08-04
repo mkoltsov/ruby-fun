@@ -8,3 +8,31 @@ ri String#upcase
 ri Object#inspect
 "123".class
 200.next
+332.323.class
+f=44.0
+2323.5.round
+2323.5.to_i
+2323.5.ceil
+"Hello"
+'hello'
+'hello' + ' ' + "dsds"
+
+'1'*5
+'I\ 'm escaped.'
+puts '\ta\tb\nc\nd'
+"\ta\tb\nc\nd"
+puts "the number is #{val}"
+.reverse
+.capitalize
+.upcase
+.downcase
+.length
+.reverse.upcase.length
+data_set=[1,2,3]
+data_set2=[]
+data_set[2]
+data_set << "e"
+data_set[0]=nil
+.clear
+= []
+= nil - assigns a new pointer

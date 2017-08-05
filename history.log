@@ -31,8 +31,52 @@ puts "the number is #{val}"
 data_set=[1,2,3]
 data_set2=[]
 data_set[2]
-data_set << "e"
+data_set << "e" = (append)
 data_set[0]=nil
 .clear
 = []
 = nil - assigns a new pointer
+[].inspect
+[].to_s
+[].join(",")
+[].split(",")
+[].sort
+[].uniq
+[].uniq!
+[].delete_at(0)
+[].delete(4)
+[].push(3)
+[].pop(3)
+[].shift
+[].unshift(1)
+[1]+[2]
+[1]-[2]
+person={"pupa"=>"dupa", "dupa"=>"pupa"}
+person["pupa"]
+person.index("pupa")
+{}.keys
+{}.values
+{}.length
+{}.size
+{}.to_a
+{}.clear
+:test_this
+:test_this.object_id
+[1,2].empty?
+[1,2].include?(3)
+2.between?(1,4)
+{}.has_key(:dupa)
+{}.has_value(:dupa)
+x=1..10
+(1..10).class
+.begin
+.end
+.first
+.last
+x.include?(10)
+x=1..10
+alpha='a'..m
+alpha.include?('b')
+[*alpha]
+z=[*x]
+Hello=1

@@ -79,4 +79,101 @@ alpha='a'..m
 alpha.include?('b')
 [*alpha]
 z=[*x]
-Hello=1
+Hello=1 - const
+
+if x<10
+
+elsif x>20
+
+else
+
+end
+
+puts "this is me" if name=="me"
+
+require 'irb/completion'
+
+unless boolean
+
+end
+
+case value
+
+when boolean
+
+when boolean
+
+else
+
+end
+
+boolean ? code1:code2
+
+puts x==1 ? "one":"two"
+
+x=y||z
+
+x||=y
+
+loop do
+
+end
+
+break;next;redo;retry
+
+while boolean
+end
+
+until boolean
+end
+
+x=0
+loop do
+	break if x>=20
+	x+=2
+	puts x
+end
+
+puts x+=2 while x<100 
+
+5.times do
+	puts "Hello"	
+end
+
+1.upto(5){puts "Hello"}	
+5.downto(1){puts "Hello"}	
+(1..5).each{puts "Hello"}	
+
+1.upto(5) do |i|
+	puts "Hello" + i.to_s
+end
+
+fr = ["1","2"]
+fr.each do |num|	
+	puts fruit.capitalize
+end
+
+for fruit in fr
+	puts fruit.capitalize
+end
+
+1.times
+.upto
+.downto
+.step
+
+(1..5).each		
+.step
+
+"Hello".each
+.each_line
+.each_byte
+
+[].each
+.each_index
+.each_with_index
+
+{}.each
+.each_key
+.each_value
+.each_pair

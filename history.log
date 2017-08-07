@@ -177,3 +177,80 @@ end
 .each_key
 .each_value
 .each_pair
+
+5.times {puts "Hello"}
+1.upto(5) {|i| puts "Hello" + i.to_s}
+
+array=[1,2,3]
+
+array.each{|num| puts num+2}
+
+(1..10).find{|i| i==5}
+(1..10).find{|i| i%3==0}
+(1..10).detect{|i| (1..10).include?(i*3)}
+
+(1..10).find_all{|i| i%30==0}
+(1..10).select{|i| (1..10).include?(i*3)}
+(1..10).any? {|i| i%3==0}
+(1..10).all {|i| i%3==0}
+[*1..10].delete_if{|i| i%3==0}
+
+m1={"pupa"=>"chef", "dupa"=>123}
+m2={"pupa"=>"123", "dupa"=>321}
+m1.merge(m2)
+m1.merge(m2){|key, old,new| old}
+m1.merge(m2){|k, o,n| o<n ? o:n}
+m1.merge!(m2){|k, o,n| o<n ? o:n}
+
+array.map do |num|
+?> if num%2==0
+>>  num+100
+>> else
+?>  num
+>> end
+end
+
+map={"pupa"=>"dupa", "dupa"=>"pupa"}
+map.map{|k,v| k}
+
+map.map{|k,v| "#{k}:#{v}"}
+
+1 <=> 2
+2 <=> 2
+
+arr=[3,4,6,7,3,1,2]
+arr.sort{|v1,v2| v1<=> v2}
+arr.sort{|v1,v2| v2<=> v1}
+.sort
+.reverse
+arr.sort_by{|i| i}
+map.to_a
+map.sort {|item1, item2| item1[1] <=> item2[1]}
+(1..10).inject{|memo, n| memo+n}
+(1..10).inject(100){|memo, n| memo+n}
+(1..10).inject(100){|memo, n| puts memo+n; memo}
+fruits=["apple", "pear", "banana", "plum"]
+
+longest_word=fruits.inject do |memo, fruit|
+if memo.length>fruit.length
+     memo
+else
+     fruit
+end
+ end
+
+def some_name
+
+end 
+
+def welcome
+    puts "Hello world"
+ end
+
+ def over_3?(age)
+ 	if age>3
+ 		true
+ 	else
+ 	    false
+ 	end
+end 	    	

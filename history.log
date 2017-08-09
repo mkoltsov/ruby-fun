@@ -253,4 +253,21 @@ def welcome
  	else
  	    false
  	end
-end 	    	
+end  
+
+class SomeName
+	def set_noise
+		@noise="Moo"
+	end
+
+	def makeNoise
+		@noise
+	end	
+
+end
+
+name=SomeName.new	    	
+
+name.makeNose
+
+

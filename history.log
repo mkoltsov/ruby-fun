@@ -276,6 +276,14 @@ module Romantic
 end
 
 dinner=Romantic::Date.new
-dinner.date=Date.new	
+dinner.date=Date.new
+
+input=gets	
+input.chomp
+.chop
+
+File.join("lib", "file.rb")
+File.expand_path(__FILE__)
+File.dirname(__FILE__)
 
 

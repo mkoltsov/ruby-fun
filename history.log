@@ -394,3 +394,7 @@ d="Hello"
 a=d.dup
 b=d.freeze
 c=d.clone
+
+Time.new.strftime("%m-%d-%y")
+
+puts "at #{client.time["iso"]} my BTC balance: #{client.account("d61d3fe9-09ea-5633-a5a7-af6445c2f82c")["native_balance"]["amount"]}, sell price: #{client.sell_price({currency_pair: 'BTC-EUR'})["amount"]}, buy price: #{client.buy_price({currency_pair: 'BTC-EUR'})["amount"]}"

@@ -286,4 +286,81 @@ File.join("lib", "file.rb")
 File.expand_path(__FILE__)
 File.dirname(__FILE__)
 
+file=File.new('irb_testfile.txt', 'w')
+file.close
+
+File.open('file.txt','r') do |file|
+	//closes automatically
+end
+
+file=File.new("test.txt", "w")
+
+file.puts "abc"
+
+file.print "111"
+
+file.write "abc"
+file << "mnop"
+
+
+file=File.new('irb_testfile.txt', 'r')
+file.gets
+
+File.open('File.txt', 'r') do |file|
+	while line= file.gets
+		puts "** " + line.chomp.reverse + " **"
+	end
+end
+
+File.open('file1.txt', 'r') do |file|
+	file.each_line {|line| puts line.upcase}	
+end
+
+File.delete
+File.rename
+require 'fileutils'
+Fileutils.copy
+
+File.exists?
+.file?
+.directory?
+readable
+writable?
+executable?
+.size
+full_path=.expand_path
+.basename
+.extname
+mtime
+atime
+
+Dir.pwd
+
+.chdir
+.entries
+
+Dir.entries('.').each do |endtyr|
+
+@first_name - instance variable
+@@name - class variable(static)
+surname - local variable
+$LAST_NAME - global variable
+
+ruby -cw c2f.rb - syntax check
+
+irb --simple-prompt -rrbconfig
+
+RbConfig::CONFIG["bindir"]
+
+ ruby -e "puts $:"
+
+ require "./loadee.rb" -> $: << "."; require "loadee.rb"
+
+ rake --tasks
+
+ rake clean_tmp
+
+  rake admin:clean:tmp
+
+  get "hoe", "3.8.0"
 

@@ -398,3 +398,96 @@ c=d.clone
 Time.new.strftime("%m-%d-%y")
 
 puts "at #{client.time["iso"]} my BTC balance: #{client.account("d61d3fe9-09ea-5633-a5a7-af6445c2f82c")["native_balance"]["amount"]}, sell price: #{client.sell_price({currency_pair: 'BTC-EUR'})["amount"]}, buy price: #{client.buy_price({currency_pair: 'BTC-EUR'})["amount"]}"
+
+
+c = Class.new do
+  def say_hello
+    puts "Hello!"
+  end
+end
+
+def Ticket.most_expensive(*tickets)
+  tickets.max_by(&:price)
+end
+
+class Temperature
+  def Temperature.c2f(celsius)
+    celsius * 9.0 / 5 + 32
+  end
+
+  def Temperature.f2c(fahrenheit)
+    (fahrenheit - 32) * 5 / 9.0
+  end
+end
+
+Temperature::c2f(30)
+
+Temperature.c2f(30)
+
+class SomeInstance
+	VENUES=["some", "more", "of that"]
+end
+
+puts SomeInstance::VENUES
+
+puts RUBY_VERSION
+puts RUBY_RELEASE_DATE
+
+SomeInstance::VENUES << "dupa"
+
+module StackLike
+	def stack
+		@stack||=[]
+	end
+
+	def add_to_stack(obj)
+		stack.push(obj)
+	end
+
+	def take_from_stack(obj)
+		stack.pop
+	end
+end
+
+fake= -> {puts "111"}
+
+fake.call
+
+module MeFirst
+  def report
+    puts "Hello from module!"
+  end
+end
+
+class Person
+  prepend MeFirst
+  def report
+    puts "Hello from class!"
+  end
+end
+
+
+p = Person.new
+p.report
+
+class Hey 
+	def method_missing(m, *args)
+		puts "instance method #{m} is missing"
+	end
+
+	def self.method_missing(m, *args)
+		puts "class method #{m} is missing"
+	end
+
+	def Hey.method_missing(m, *args)
+		puts "static method #{m} is missing"
+		super
+	end
+end
+
+module Tools
+  class Hammer
+  end
+end
+
+h = Tools::Hammer.new

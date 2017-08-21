@@ -491,3 +491,15 @@ module Tools
 end
 
 h = Tools::Hammer.new
+
+obj = Object.new
+def obj.show_me
+  puts "Inside singleton method show_me of #{self}"
+end
+
+require "English"
+
+puts $PID
+puts $LOAD_PATH
+
+::String.new()

@@ -503,3 +503,17 @@ puts $PID
 puts $LOAD_PATH
 
 ::String.new()
+
+def talk
+  puts "Hello"
+end
+
+class Object
+  private
+
+  def talk
+    puts "Hello"
+  end
+end
+
+ruby -e 'p Kernel.private_instance_methods.sort'

@@ -517,3 +517,87 @@ class Object
 end
 
 ruby -e 'p Kernel.private_instance_methods.sort'
+
+if true 
+	puts 111
+end
+
+if true then
+	puts 111
+end
+
+if true; puts 222; end
+
+if not x==1
+
+if (!x)==1
+
+unless x==1
+
+puts "Big number!" if x > 100
+puts "Big number!" unless x <= 100
+
+case answer
+when "y", "yes"
+	puts "Good Bye!"
+	exit 		
+when "no"
+	puts "Let's continue"	
+end	
+
+n = 1
+begin
+  puts n
+  n = n + 1
+end while n < 11
+puts "Done!"
+
+n = 1
+while n < 11
+  puts n
+  n = n + 1
+end
+puts "Done!"
+
+n = 1
+loop do
+  n = n + 1
+  next unless n == 10
+  break
+end
+
+n = 1
+loop do
+  n = n + 1
+  break if n > 9
+end
+
+n = 1
+until n > 10
+  puts n
+  n = n + 1
+end
+
+n = 1
+n = n + 1 until n == 10
+puts "We've reached 10!"
+
+c=[1,2,3]
+
+for a in c 
+	puts "#{a}"
+end
+
+def my_loop
+  while true
+    yield
+  end
+end
+
+def my_loop
+  yield while true
+end
+
+loop { puts "Looping forever!" }	
+
+my_loop { puts "My-looping forever!" }

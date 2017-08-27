@@ -638,3 +638,105 @@ class Array
     acc
   end
 end
+
+def block_args_unleashed
+  yield(1,2,3,4,5)
+end
+
+block_args_unleashed do |a,b=1,*c,d,e|
+  puts "Arguments:"
+  p a,b,c,d,e
+end
+
+def block_local_variable
+  x = "Original x!"
+  3.times do |i;x|
+    x = i
+    puts "x in the block is now #{x}"
+  end
+  puts "x after the block ended is #{x}"
+end
+
+print "Enter a number: "
+n = gets.to_i
+begin
+  result = 100 / n
+rescue
+  puts "Your number didn't work. Was it zero???"
+  exit
+end
+
+def fussy_method(x)
+  raise ArgumentError, "I need a number under 10" unless x < 10
+end
+fussy_method(20)
+
+begin
+  fussy_method(20)
+rescue ArgumentError
+  puts "That was not an acceptable number!"
+end
+
+raise "Problem!"
+
+raise RuntimeError, "Problem!"
+raise "Problem!"
+raise RuntimeError, "Problem!"
+
+begin 
+  raise ArgumentError=>e
+p e.class
+end
+
+begin
+  fh = File.open(filename)
+
+rescue => e
+  logfile.puts("User tried to open #{filename}, #{Time.now}")
+  logfile.puts("Exception: #{e.message}")
+  raise
+end
+
+
+def line_from_file(filename, substring)
+  fh = File.open(filename)
+  begin
+    line = fh.gets
+    raise ArgumentError unless line.include?(substring)
+  rescue ArgumentError
+    puts "Invalid line!"
+    raise
+  ensure
+    fh.close
+  end
+  return line
+end
+
+class MyNewException < Exception
+end
+raise MyNewException, "some new kind of error has occurred!"
+
+
+class MyNewException < Exception
+end
+begin
+  puts "About to raise exception..."
+  raise MyNewException
+rescue MyNewException => e
+  puts "Just raised an exception: #{e}"
+end
+
+class InvalidLineError < StandardError
+end
+def line_from_file(filename, substring)
+  fh = File.open(filename)
+  line = fh.gets
+  raise InvalidLineError unless line.include?(substring)
+  return line
+
+  rescue InvalidLineError
+    puts "Invalid line!"
+    raise
+  ensure
+    fh.close
+end

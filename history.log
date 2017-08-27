@@ -207,10 +207,10 @@ array.map do |num|
 >>  num+100
 >> else
 ?>  num
->> end
-end
 
 map={"pupa"=>"dupa", "dupa"=>"pupa"}
+>> end
+end
 map.map{|k,v| k}
 
 map.map{|k,v| "#{k}:#{v}"}
@@ -560,7 +560,13 @@ end
 puts "Done!"
 
 n = 1
-loop do
+loop
+
+
+
+
+
+	 do
   n = n + 1
   next unless n == 10
   break
@@ -601,3 +607,34 @@ end
 loop { puts "Looping forever!" }	
 
 my_loop { puts "My-looping forever!" }
+
+class Integer
+  def my_times
+    c = 0
+    until c == self
+      yield(c)
+      c += 1
+    end
+    self
+  end
+end
+
+5.my_times {|i| puts "I'm on iteration #{i}!" }
+
+class Array
+  def my_each
+    size.my_times do |i|
+      yield self[i]
+    end
+    self
+  end
+end
+
+class Array
+  # Put the definition of my_each here
+  def my_map
+    acc = []
+    my_each {|e| acc << yield(e) }
+    acc
+  end
+end

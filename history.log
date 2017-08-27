@@ -740,3 +740,42 @@ def line_from_file(filename, substring)
   ensure
     fh.close
 end
+
+dd=->(x,y) { x * y }
+dd.call(3,3)
+
+class Person
+  attr_accessor :name
+  def to_str
+    name
+  end
+end
+
+class Person
+  attr_accessor :name, :age, :email
+  def to_ary
+    [name, age, email]
+  end
+end
+
+String.instance_methods(false)
+
+"I am a String object".methods
+"I am a String object".methods.sort
+str.singleton_methods
+String.instance_methods
+
+obj.private_methods
+obj.public_methods
+obj.protected_methods
+obj.singleton_methods
+
+MyClass.private_instance_methods
+MyClass.protected_instance_methods
+MyClass.public_instance_methods
+
+class LetsCompare
+include Comparable
+def <=>
+end
+end

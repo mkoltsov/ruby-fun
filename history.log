@@ -824,4 +824,74 @@ string.start_with?("Ruby")
  string.empty?                 
  string.count("a")
   string.count("A-Z")
+  string.count("^aey. ")
+  string.index("cool")
+  string.rindex("cool")
+  "a".ord
+
+  97.chr
+  "a".equal?("a")
+  string.upcase
+  string.downcase
+  string.swapcase
+  string.capitalize
+  string.rjust(25)
+  string.ljust(25)
+  string.rjust(25,'.')
+  string.rjust(25,'><')
+  "The middle".center(20, "*")
+  "The middle".center(21, "*")
+  string.strip
+  string.lstrip
+  string.rstrip
+  .chop
+  .chomp
 string[7..14]
+"David A. Black".chomp('ck')
+string.clear
+string.replace("David A. Black")
+"David A. Black".delete("abc")
+"David A. Black".delete("a-e","^c")
+"a".succ
+"100".to_i(17)
+"100".oct
+"100".hex
+puts __ENCODING__
+ str.encoding
+ str.encode("US-ASCII")
+ s =:x
+  Symbol.all_symbols
+Symbol.all_symbols.include?(:abc)
+Symbol.all_symbols.grep(123)
+
+require 'date'
+Date.parse("April 24 1705").england.strftime("%B %d %Y")
+
+require 'date'
+require 'time'
+Date.today
+puts Date.today
+puts Date.new(1959,2,1)
+Date.parse
+Time.new
+Time.at(10000)
+Time.mktime(2007,10)
+Time.parse('March 2007')
+puts DateTime.new(2009, 1, 2, 3, 4, 5)
+puts DateTime.now
+puts DateTime.parse("October 23, 1973, 10:34 AM")
+dt = DateTime.now
+dt.year
+t = Time.now
+t.month
+d.monday?
+t = Time.now
+t.strftime("%m-%d-%y")
+t.strftime("Today is %x")
+Date.today.rfc2822
+DateTime.now.httpdate
+d = Date.today
+puts d.next
+puts d.next_year
+puts d.next_month(3)
+puts d.prev_day(10)

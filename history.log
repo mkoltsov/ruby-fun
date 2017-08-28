@@ -779,3 +779,49 @@ include Comparable
 def <=>
 end
 end
+
+puts %q{You needn't escape apostrophes when using %q.}
+
+text = <<EOM
+This is the first line of text.
+This is the second line.
+Now we're done.
+EOM
+
+array = [1,2,3, <<EOM, 4]
+This is the here-doc!
+It becomes array[3].
+EOM
+p array
+
+string = "Ruby is a cool language."
+string[5,10]
+
+string = "Ruby is a cool language."
+
+string[/c[ol ]+/] 
+
+string["cool"] = "great"
+
+"My name is #{class Person
+                   attr_accessor :name
+                 end
+                 d = Person.new
+                 d.name = "David"
+                 d.name
+                 }."
+class Person
+>>   attr_accessor :name
+>>   def to_s
+>>     name
+>>   end
+>> end
+
+string.include?("Ruby")
+string.start_with?("Ruby")
+ string.end_with?("!!!")
+
+ string.empty?                 
+ string.count("a")
+  string.count("A-Z")
+string[7..14]

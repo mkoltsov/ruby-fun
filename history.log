@@ -895,3 +895,159 @@ puts d.next
 puts d.next_year
 puts d.next_month(3)
 puts d.prev_day(10)
+
+hash = { "red" => "ruby", "white" => "diamond", "green" => "emerald" }
+hash.each.with_index {|(key,value),i|
+  puts "Pair #{i} is: #{key}/#{value}"
+}
+
+%w{...}
+%i{...}
+
+a = Array.new
+Array.new(3) {n+1; n*10}
+
+%i{ a b c }
+Array.try_convert(obj)
+
+a = [1,2,3,4]
+a.unshift(0)
+
+a = [1,2,3,4]
+a.push(5)
+
+a = [1,2,3,4]
+a << 5
+
+a = [1,2,3,4,5]
+a.push(6,7,8)
+.pop
+.shift
+
+a = %w{ one two three four five }
+
+a.pop(2)
+a.shift(2)
+
+[1,2,3].concat([4,5,6])
+
+[1]+[2]
+
+.flatten
+.flatten(1)
+.flatten!()
+.reverse
+
+["abc", "def", 123].join
+.join(", ")
+
+a = %w{ one two three }
+=> ["one", "two", "three"]
+>> a * "-"
+=> "one-two-three"
+
+[1,2,3,1,4,3,5,1].uniq
+
+.compact
+.size
+.empty?
+.include?
+.count
+.first
+.last
+.sample
+
+state_hash={"Connecticut"=>1}
+conn_abbrev = state_hash.fetch("Connecticut")
+
+state_hash.fetch("Nebraska", "Unknown state")
+
+two_states = state_hash.values_at("New Jersey","Delaware")
+
+h = Hash.new(0)
+h = Hash.new {|hash,key| hash[key] = 0 }
+.update
+.merge
+
+h = Hash[1,2,3,4,5,6] {1=>2, 3=>4, 5=>6}
+
+h.select {|k,v| k > 1 }
+h.invert
+h.reject {|k,v| k > 1 }
+.clear
+
+h.has_key?(1)
+h.include?(1)
+h.key?(1)
+h.member?(1)
+h.has_value?("three") 
+h.value?("three")
+h.value?("three")
+h.size
+
+add_to_city_database("New York City",
+  state: "New York",
+  population: 7000000,
+  nickname: "Big Apple")
+
+  my_method({ "NY" => "New York" }, 100, "another argument")
+
+  def m(a:, b:)
+>>   p a,b
+>> end
+
+def m(a: 1, b: 2, **c)
+
+r = Range.new(1,100)
+r = 1..100
+r = 1...100 (exclusive)
+.begin
+.end
+.exclude_end?
+.cover("Abd")
+r.include?("a")
+
+
+=> 1.0..2.0
+>> r.include?(1.5)
+=> true
+
+require 'set'
+
+>> new_england = ["Connecticut", "Maine", "Massachusetts",
+                  "New Hampshire", "Rhode Island", "Vermont"]
+=> ["Connecticut", "Maine", "Massachusetts",
+    "New Hampshire","Rhode Island", "Vermont"]
+>> state_set = Set.new(new_england)
+
+tri_state << "Pennsylvania"
+tri_state.delete("Connecticut")
+tri_state.add?("Pennsylvania")
+
+ tri_state = Set.new(["Connecticut", "New Jersey", "New York"])
+=> #<Set: {"Connecticut", "New Jersey", "New York"}>
+# Subtraction (difference/-)
+>> state_set - tri_state
+=> #<Set: {"Maine", "Massachusetts", "New Hampshire", "Rhode Island",
+"Vermont"}>
+# Addition (union/+/|)
+>> state_set + tri_state
+=> #<Set: {"Connecticut", "Maine", "Massachusetts", "New Hampshire",
+"Rhode Island", "Vermont", "New Jersey", "New York"}>
+# Intersection (&)
+>> state_set & tri_state
+=> #<Set: {"Connecticut"}>
+>> state_set | tri_state
+=> #<Set: {"Connecticut", "Maine", "Massachusetts", "New Hampshire",
+"Rhode Island", "Vermont", "New Jersey", "New York"}>
+
+state_set ^ tri_state
+
+ small_states = Set.new(["Connecticut", "Delaware", "Rhode Island"])
+=> #<Set: {"Connecticut", "Delaware", "Rhode Island"}>
+>> tiny_states = Set.new(["Delaware", "Rhode Island"])
+=> #<Set: {"Delaware", "Rhode Island"}>
+>> tiny_states.subset?(small_states)
+=> true
+>> small_states.superset?(tiny_states)
+=> true

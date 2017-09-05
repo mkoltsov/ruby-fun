@@ -1148,3 +1148,821 @@ end
 
 ["2",1,5,"3",4,"6"].sort {|a,b| a.to_i <=> b.to_i }
 .sort_by(&:to_i)
+
+e = Enumerator.new do |y|
+  y << 1
+  y << 2
+  y << 3
+end
+
+e = Enumerator.new do |y|
+  (1..3).each {|i| y << i }
+end
+
+e = Enumerator.new do |y|
+  puts "Starting up the block!"
+  (1..3).each {|i| y << i }
+  puts "Exiting the block!"
+end
+p e.to_a
+p e.select {|x| x > 2 }
+
+a = [1,2,3,4,5]
+e = Enumerator.new do |y|
+  total = 0
+  until a.empty?
+    total += a.pop
+    y << total
+  end
+end
+
+names = %w{ David Black Yukihiro Matsumoto }
+e = names.enum_for(:select)
+
+e.each{}
+
+e = names.enum_for(:inject, "Names: ")
+
+e.each {|string, name| string << "#{name}..." }
+
+str = "Hello"
+
+str.each_byte {|b| puts b }
+
+str.enum_for(:each_byte)
+
+clase SomeClass
+include Enumerable
+def each
+end
+end
+
+give_me_an_array(array.to_enum)
+
+names = %w{ David Yukihiro }
+e = names.to_enum
+puts e.next
+puts e.next
+e.rewind
+puts e.next
+
+module Music
+  class Scale
+    NOTES = %w{ c c# d d# e f f# g a a# b }
+
+    def play
+      NOTES.each {|note| yield note }
+    end
+  end
+end
+
+scale = Music::Scale.new
+scale.play {|note| puts "Next note is #{note}" }
+
+ names = %w{ David Black Yukihiro Matsumoto }
+=> ["David", "Black", "Yukihiro", "Matsumoto"]
+>> names.each_slice(2).map do |first, last|
+     "First name: #{first}, last name: #{last}\n"
+   end
+=> ["First name: David, last name: Black\n",
+    "First name: Yukihiro, last name: Matsumoto\n"]
+
+    (1..Float::INFINITY).select {|n| n % 3 == 0 }.first(10)
+
+    (1..Float::INFINITY).lazy
+
+    (1..Float::INFINITY).lazy.select {|n| n % 3 == 0 }
+
+    (1..Float::INFINITY).lazy.select {|n| n % 3 == 0 }.first(10)
+
+    y_enum = (1..Float::INFINITY).lazy.select {|n| n % 3 == 0 }
+=> #<Enumerator::Lazy: #<Enumerator::Lazy: 1..Infinity>:select>
+>> my_enum.take(5).force
+=> [3, 6, 9, 12, 15]
+>> my_enum.take(10).force
+=> [3, 6, 9, 12, 15, 18, 21, 24, 27, 30]
+
+
+def fb_calc(i)
+  case 0
+  when i % 15
+    "FizzBuzz"
+  when i % 3
+    "Fizz"
+  when i % 5
+    "Buzz"
+  else
+    i.to_s
+  end
+end
+
+def fb(n)
+  (1..Float::INFINITY).lazy.map {|i| fb_calc(i) }.first(n)
+end
+
+//.class
+=> Regexp
+
+puts "Match!" if /abc/.match("The alphabet starts with abc.")
+puts "Match!" if "The alphabet starts with abc.".match(/abc/)
+
+puts "Match!" if /abc/ =~ "The alphabet starts with abc."
+puts "Match!" if "The alphabet starts with abc." =~ /abc/
+
+"The alphabet starts with abc" =~ /abc/
+=> 25
+>> /abc/.match("The alphabet starts with abc.")
+=> #<MatchData "abc">
+
+/((a)((b)c))/.match("abc")
+
+re = /(?<first>\w+)\s+((?<middle>\w\.)\s+)?(?<last>\w+)/
+
+m = re.match("David A. Black")
+
+#<MatchData "David A. Black" first:"David" middle:"A." last:"Black">
+
+puts $~
+
+/abc/.inspect
+array.find_all {|e| e.size > 10 and /\d/.match(e) }
+
+ "testing 1 2 3 testing 4 5 6".scan(/\d/)
+
+ "one two three".scan(/\w+/) {|n| puts "Next number: #{n}" }
+
+ "Ruby".split(//)
+
+ "typigraphical error".sub(/i/,"o")
+
+ "capitalize the first vowel".sub(/[aeiou]/) {|s| s.upcase }
+
+ "capitalize every word".gsub(/\b\w/) {|s| s.upcase }
+
+"aDvid".sub(/([a-z])([A-Z])/, '\2\1')
+
+/(abc)/.match("abc")
+
+puts "Match!" if re.match(string)
+puts "Match!" if string =~ re
+puts "Match!" if re === string
+
+print "Continue? (y/n) "
+answer = gets
+case answer
+when /^y/i
+  puts "Great!"
+when /^n/i
+  puts "Bye!"
+  exit
+else
+  puts "Huh?"
+end
+
+["USA", "UK", "France", "Germany"].grep(/[a-z]/)
+ ["USA", "UK", "France", "Germany"].grep(/[a-z]/) {|c| c.upcase }
+
+ STERR.puts("problem")
+ STERR.write("problem")
+
+ STDIN.each {|line| p line }
+
+ $/ = "NEXT"
+
+ STDIN.select {|line| line =~ /\A[A-Z]/ }
+
+ STDIN.map {|line| line.reverse }
+
+ File.open("records.txt") do |f|
+  while record = f.gets
+    name, nationality, instrument, dates = record.chomp.split('|')
+    puts "#{name} (#{dates}), who was #{nationality},
+ played #{instrument}. "
+  end
+end
+
+File.open("records.txt") do |f|
+  f.each do |record|
+    name, nationality, instrument, dates = record.chomp.split('|')
+    puts "#{name} (#{dates}), who was #{nationality},
+  played #{instrument}. "
+  end
+end
+
+# Sample record in members.txt:
+# David Black male 55
+count = 0
+total_ages = File.readlines("members.txt").inject(0) do |total,line|
+  count += 1
+  fields = line.split
+  age = fields[3].to_i
+  total + age
+end
+puts "Average age of group: #{total_ages / count}."
+
+count = 0
+total_ages = File.open("members.txt") do |f|
+  f.inject(0) do |total,line|
+
+    count += 1
+    fields = line.split
+    age = fields[3].to_i
+    total + age
+  end
+end
+puts "Average age of group: #{total_ages / count}."
+
+>> File.open("no_file_with_this_name")
+Errno::ENOENT: No such file or directory - no_file_with_this_name
+>> f = File.open("/tmp")
+=> #<File:/tmp>
+>> f.gets
+Errno::EISDIR: Is a directory - /tmp
+>> File.open("/var/root")
+Errno::EACCES: Permission denied - /var/root
+
+FileTest.exist?("/usr/local/src/ruby/README")
+
+FileTest.directory?("/home/users/dblack/info")
+FileTest.file?("/home/users/dblack/info")
+FileTest.symlink?("/home/users/dblack/info")
+
+FileTest.readable?("/tmp")
+FileTest.writable?("/tmp")
+FileTest.executable?("/home/users/dblack/setup")
+
+
+FileTest.size("/home/users/dblack/setup")
+FileTest.zero?("/tmp/tempfile")
+
+test ?e, "/tmp"
+
+Dir.entries("/usr/local/src/ruby/lib/minitest")
+
+[".", "..", ".document", "autorun.rb", "benchmark.rb", "hell.rb",
+"mock.rb", "parallel_each.rb", "pride.rb", "README.txt", "spec.rb",
+"unit.rb"]
+
+d = Dir.new("/usr/local/src/ruby/lib/minitest")
+entries = d.entries
+entries.delete_if {|entry| entry =~ /^\./ }
+entries.map! {|entry| File.join(d.path, entry) }
+entries.delete_if {|entry| !File.file?(entry) }
+print "Total bytes: "
+puts entries.inject(0) {|total, entry| total + File.size(entry) }
+
+ Dir["/usr/local/src/ruby/include/ruby/r*.h"]
+
+ Dir.glob("info*")      # []
+Dir.glob("info", File::FNM_CASEFOLD   # ["Info", "INFORMATION"]
+
+
+Dir.glob("*info*")
+=> []
+>> Dir.glob("*info*", File::FNM_DOTMATCH)
+=> [".information"]
+>> Dir.glob("*info*", File::FNM_DOTMATCH | File::FNM_CASEFOLD)
+=> [".information", ".INFO", "Info"]
+
+Dir["*info*"]
+
+Dir.glob("*info*", 0)
+
+dir = "/usr/local/src/ruby/lib/minitest"
+entries = Dir["#{dir}/*"].select {|entry| File.file?(entry) }
+print "Total bytes: "
+puts entries.inject(0) {|total, entry| total + File.size(entry) }
+
+
+require 'fileutils'
+.cp
+.mkdir
+FileUtils.mv("baker.rb.bak", "backup")
+
+ File.exist?("backup/super.rb")
+=> true
+>> FileUtils.rm("./backup/super.rb")
+=> ["./backup/super.rb"]
+>> File.exist?("backup/super.rb")
+=> false
+=> 0
+
+
+ FileUtils.rm_rf("backup")
+=> ["backup"]
+>> File.exist?("backup")
+=> false
+
+FileUtils::DryRun.rm_rf("backup")
+
+FileUtils::DryRun.ln_s("backup", "backup_link")
+ FileUtils::NoWrite.rm("backup/super.rb")
+=> nil
+>> File.exist?("backup/super.rb")
+=> true
+
+require 'pathname'
+=> true
+>> path = Pathname.new("/Users/dblack/hacking/test1.rb")
+=> #<Pathname:/Users/dblack/hacking/test1.rb>
+
+path.basename
+
+path.dirname
+>> Dir["backup/*"]
+=> ["backup/baker.rb.bak", "backup/ensure.rb", "backup/super.rb"]
+
+path.extname
+
+ path.ascend do |dir|
+?>   puts "Next level up: #{dir}"
+>> end
+
+module DeCommenter
+  def self.decomment(infile, outfile, comment_re = /\A\s*#/)
+    infile.each do |inline|
+      outfile.print inline unless inline =~ comment_re
+    end
+  end
+end
+
+File.open("myprogram.rb") do |inf|
+  File.open("myprogram.rb.out", "w") do |outf|
+    DeCommenter.decomment(inf, outf)
+  end
+end
+
+tf = Tempfile.new("my_temp_file").
+
+require 'open-uri'
+rubypage = open("http://rubycentral.org")
+puts rubypage.gets
+
+class << object
+  # method and constant definitions here
+end
+
+str = "I am a string"
+class << str
+  def twice
+    self + " " + self
+  end
+end
+puts str.twice
+
+str = "I am a string"
+class << str
+  def twice
+    self + " " + self
+  end
+end
+puts str.twice
+
+N = 1
+obj = Object.new
+class << obj
+  N = 2
+end
+
+
+class Ticket
+  class << self
+    def most_expensive(*tickets)
+      tickets.max_by(&:price)
+    end
+  end
+end
+
+class << Ticket
+  def most_expensive(tickets)
+  # etc.
+
+
+module Secretive
+  def name
+    "[not available]"
+  end
+end
+
+class << ruby
+  include Secretive
+end
+
+c = C.new
+class << c
+  include M
+  p ancestors
+end
+
+string = "a string"
+p string.singleton_class.ancestors
+
+class C
+end
+
+ def C.a_class_method
+[10] pry(main)*   puts "singleton method"
+[10] pry(main)* end
+
+C.a_class_method
+
+12] pry(main)> class D<C
+[12] pry(main)* end
+
+D.a_class_method
+
+gem install activesupport
+require 'active_support/core_ext'
+
+require 'active_support'
+
+"person".pluralize
+
+"little_dorritt".titleize
+
+class String
+  alias __old_reverse__ reverse
+  def reverse
+    $stderr.puts "Reversing a string!"
+    __old_reverse__
+  end
+end
+puts "David".reverse
+
+
+class String
+  alias __old_reverse__ reverse
+end
+
+class String
+  alias_method :__old_reverse__, :reverse
+end
+
+w/active support
+
+Time.now.to_s(:db)
+
+Time.now.to_s(:number)
+
+Time.now.to_s(:rfc822)
+
+object.extend(MyModule)
+
+class Car
+  def self.makes
+    %w{ Honda Ford Toyota Chevrolet Volvo }
+  end
+end
+
+class Car
+  class << self
+    def makes
+      %w{ Honda Ford Toyota Chevrolet Volvo }
+    end
+  end
+end
+
+module Makers
+  def makes
+    %w{ Honda Ford Toyota Chevrolet Volvo }
+  end
+end
+
+class Car
+  extend Makers
+end
+
+Car.extend(Makers)
+
+p Car.singleton_class.ancestors
+
+module Shout
+refine String do
+  def shout
+    self.upcase +"!!!!"
+  end
+end
+end
+
+class Person
+  attr_accessor :name
+
+  using Shout
+  def announce  
+  puts "announcing #{name.shout}"
+  end
+ end
+ 
+ davaid=person.new
+ dadid.name="David"
+ david.announce
+
+ pr = Proc.new { puts "Inside a Proc's block" }
+ pr.call
+
+ p=proc { puts "Hi!" }
+
+ def call_a_proc(&block)
+  block.call
+end
+call_a_proc { puts "I'm the block...or Proc...or something." }   
+
+p = Proc.new {|x| puts x.upcase }
+%w{ David Black }.each(&p)
+
+ p = Proc.new {|x| puts x.upcase }
+%w{ David Black }.each(&p)
+
+p = Proc.new { puts "This proc argument will serve as a code block." }
+capture_block(&p)
+
+def capture_block(&block)
+  block.call
+end
+capture_block { puts "Inside the block" }
+
+p = Proc.new { puts "This proc argument will serve as a code block." }
+capture_block(&p)
+
+%w{ david black }.map(&:capitalize)
+
+%w{ david black }.map &:capitalize
+
+pr = Proc.new {|x| puts "Called with argument #{x}" }
+pr.call(100)
+
+lam = lambda { puts "A lambda!" }
+
+
+class C
+  def talk
+    puts "Method-grabbing test!  self is #{self}."
+  end
+end
+
+c = C.new
+meth = c.method(:talk)
+
+class D < C
+end
+
+d = D.new
+unbound = meth.unbind
+unbound.bind(d).call
+
+class A
+  def a_method
+    puts "Definition in class A"
+  end
+end
+
+class B < A
+  def a_method
+    puts "Definition in class B (subclass of A)"
+  end
+end
+
+class C < B
+end
+
+c = C.new
+
+A.instance_method(:a_method).bind(c).call
+
+class C
+  def call_original
+    A.instance_method(:a_method).bind(self).call
+  end
+end
+
+mult = lambda {|x,y| x * y }
+twelve = mult[3,4]
+
+twelve = mult.(3,4)
+
+m = gets.chomp
+eval("def #{m}; puts 'Hi!'; end")
+eval(m)
+
+def use_a_binding(b)
+  eval("puts str", b)
+end
+str = "I'm a string in top-level binding!"
+use_a_binding(binding)
+
+
+p self
+a = []
+a.instance_eval { p self }
+
+class C
+  def initialize
+    @x = 1
+  end
+end
+
+c = C.new
+c.instance_eval { puts @x }
+
+>> var = "initialized variable"
+=> "initialized variable"
+>> class C
+>>   puts var
+>> end
+
+NameError: undefined local variable or method `var' for C:Class
+        from (irb):3
+>> C.class_eval { puts var }
+initialized variable
+
+C.class_eval { define_method("talk") { puts var }  }
+
+Thread.new do
+  puts "Starting the thread"
+  sleep 1
+  puts "At the end of the thread"
+end
+puts "Outside the thread"
+
+t = Thread.new do
+  puts "Starting the thread"
+  sleep 1
+  puts "At the end of the thread"
+end
+puts "Outside the thread"
+t.join
+
+puts "Trying to read in some files..."
+t = Thread.new do
+  (0..2).each do |n|
+   begin
+    File.open("part0#{n}") do |f|
+      text << f.readlines
+    end
+    rescue Errno::ENOENT
+      puts "Message from thread: Failed on n=#{n}"
+      Thread.exit
+    end
+  end
+end
+t.join
+puts "Finished!"
+
+
+f = Fiber.new do
+  puts "Hi."
+  Fiber.yield
+  puts "Nice day."
+  Fiber.yield
+  puts "Bye!"
+end
+f.resume
+puts "Back to the fiber:"
+f.resume
+puts "One last message from the fiber:"
+f.resume
+puts "That's all!"
+
+require 'socket'
+s = TCPServer.new(3939)
+while true
+  conn = s.accept
+  conn.puts "Hi. Here's the date."
+  conn.puts `date`
+  conn.close
+end
+
+t = Thread.new { Thread.stop; a = 3 }
+t.run
+
+t = Thread.new do
+  Thread.current[:message] = "Hello"
+end
+t.join
+p t.keys
+puts t[:message]
+
+system("date")
+
+system("cat")
+
+$?
+
+d = `date`
+
+command = "date"
+
+%x(#{command})
+
+class Cookbook
+  attr_accessor :title, :author
+  def initialize
+    @recipes = []
+  end
+
+  def method_missing(m,*args,&block)
+    @recipes.send(m,*args,&block)
+  end
+end
+
+def respond_to_missing?(m, include_private = false)
+  /set_/.match(m) || super
+end
+
+
+module M
+  def self.included(c)
+    puts "I have just been mixed into #{c}."
+  end
+end
+class C
+  include M
+end
+
+module M
+  def self.included(cl)
+    def cl.a_class_method
+      puts "Now the class has a new class method."
+    end
+  end
+
+  def self.extended(cl)
+
+  end
+
+  def an_inst_method
+    puts "This module supplies this instance method."
+  end
+end
+
+
+class C
+  include M
+end
+
+c = C.new
+c.an_inst_method
+C.a_class_method
+
+class C
+  def self.inherited(subclass)
+    puts "#{self} just got subclassed by #{subclass}."
+  end
+end
+class D < C
+end
+
+class C
+  def self.inherited(subclass)
+    puts "#{self} just got subclassed by #{subclass}."
+  end
+end
+class D < C
+end
+
+
+class C
+  def self.const_missing(const)
+    puts "#{const} is undefined—setting it to 1."
+    const_set(const,1)
+  end
+end
+
+class C
+  def self.method_added(m)
+
+  end
+  def self.singleton_method_added(m)
+    puts "Method #{m} was just defined."
+  end
+end
+
+p local_variables
+p global_variables.sort
+
+class Person
+  attr_accessor :name, :age
+  def initialize(name)
+    @name = name
+  end
+end
+
+david = Person.new("David")
+david.age = 55
+p david.instance_variables
+
+:_
+
+require_relative 'callertools'
+def x
+  y
+end
+
+def y
+  z
+end
+def z
+  stack = CallerTools::Stack.new
+  puts stack.report
+end
+x
